@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Thank you!</title>
+</head>
+
+<style>
+    .centered-page {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .centered-page .page-box {
+        width: 100%;
+        max-width: 640px;
+    }
+
+    .btn-primary {
+        background-color: #c995e9 !important;
+        border-color: #c995e9 !important;
+    }
+
+    .btn-primary:hover {
+        background-color: #632da5 !important;
+        border-color: #512685 !important;
+    }
+
+    .btn-secondary {
+        background-color: #c995e9 !important;
+        border-color: #c995e9 !important;
+    }
+
+    .btn-secondary:hover {
+        background-color: #632da5 !important;
+        border-color: #512685 !important;
+    }
+</style>
+
+<body>
+    <!-- Activity 4: Insert code here to include the header (found in the partials folder) to your page -->
+    <%- include('header') %>
+
+        <div class="container centered-page">
+            <div class="page-box">
+                <h2 class="mb-3">Comment Submitted!</h2>
+                <p class="mb-4" style="font-style: italic;">Your feedback helps us improve our services.
+                    <br>We appreciate you taking the time to share your thoughts with us!</p>
+
+            </div>
+            <a href="/" class="btn btn-primary me-2">Return to Home</a>
+            <a href="/contact" class="btn btn-secondary">Submit another Response</a>
+        </div>
+</body>
+
+</html>

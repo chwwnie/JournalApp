@@ -1,0 +1,61 @@
+<style>
+
+  body{
+    background-color: #f6e4ff !important;
+    background: linear-gradient(135deg, #f4eef7 0%, #f7eaff 100%) !important;
+    min-height: 100vh;
+  }
+  /* Override Bootstrap navbar background color
+     Change the hex value below to use a different colour. */
+  nav.navbar {
+    background-color: #c9a1ee !important;
+  }
+
+  /* Ensure brand and links stay readable on the custom background */
+  nav.navbar .navbar-brand,
+  nav.navbar .nav-link {
+    color: #000000 !important;
+  }
+
+  /* Optional: change hover colour for links */
+  nav.navbar .nav-link:hover {
+    color: #a967dc !important;
+  }
+
+  a.navbar-brand {
+    font-family: 'Courier New', monospace;
+  }
+
+  a.nav-link {
+    font-family: Tahoma, sans-serif;
+  }
+
+  .navbar-toggler {
+    display: block;
+  }
+</style>
+
+<nav class="navbar bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Daily Journal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/entries">Add Entries</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/past-entries">Past Entries</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

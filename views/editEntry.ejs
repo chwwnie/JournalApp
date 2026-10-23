@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Edit Journal Entry</title>
+</head>
+
+<body>
+    <%- include('header') %>
+
+    <div class="container mt-5" style="max-width: 700px;">
+        <div class="card shadow-sm p-4">
+            <h2 class="mb-4 text-center">Edit Journal Entry</h2>
+            <% const knownMoods = ['Happy', 'Excited', 'Calm', 'Anxious', 'Sad', 'Reflective']; %>
+            <% const selectedMoods = Array.isArray(entry.mood) ? entry.mood : [entry.mood]; %>
+            <% const unknownMoods = selectedMoods.filter(m => !knownMoods.includes(m)); %>
+            <% const customMoodValue = unknownMoods.join(', '); %>
+            <% const showCustom = unknownMoods.length > 0; %>
+
+            <form action="/past-entries/<%= entry.id %>/edit" method="POST">
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" id="date" name="date" class="form-control" value="<%= entry.date %>" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Mood</label>
+                    <div class="form-text mb-2">Pick one or more moods, or select Other and add your own.</div>
+                    <div class="row row-cols-2 gx-3">
+                        <% knownMoods.forEach(function(mood){ %>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="mood" id="mood<%= mood %>" value="<%= mood %>" <%= selectedMoods.includes(mood) ? 'checked' : '' %>>
+                                    <label class="form-check-label" for="mood<%= mood %>"><%= mood %></label>
+                                </div>
+                            </div>
+                        <% }); %>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="mood" id="moodOther" value="Other" <%= showCustom ? 'checked' : '' %>>
+                                <label class="form-check-label" for="moodOther">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 <%= showCustom ? '' : 'd-none' %>" id="customMoodWrapper">
+                    <label for="customMood" class="form-label">Custom Mood</label>
+                    <input type="text" id="customMood" name="customMood" class="form-control" placeholder="Describe your mood" maxlength="50" value="<%= customMoodValue %>">
+                </div>
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">Journal Content</label>
+                    <textarea id="content" name="content" class="form-control" rows="6" placeholder="Write your thoughts here..." required><%= entry.content %></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="/past-entries" class="btn btn-secondary ms-2">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const moodCheckboxes = document.querySelectorAll('input[name="mood"]');
+        const moodOtherCheckbox = document.getElementById('moodOther');
+        const customMoodWrapper = document.getElementById('customMoodWrapper');
+        const customMoodInput = document.getElementById('customMood');
+
+        function updateMoodValidation() {
+            const anyChecked = Array.from(moodCheckboxes).some(input => input.checked);
+            moodCheckboxes[0].required = !anyChecked;
+        }
+
+        moodCheckboxes.forEach(input => {
+            input.addEventListener('change', () => {
+                if (moodOtherCheckbox.checked) {
+                    customMoodWrapper.classList.remove('d-none');
+                    customMoodInput.required = true;
+                    customMoodInput.focus();
+                } else {
+                    customMoodWrapper.classList.add('d-none');
+                    customMoodInput.required = false;
+                    customMoodInput.value = '';
+                }
+                updateMoodValidation();
+            });
+        });
+
+        updateMoodValidation();
+    </script>
+</body>
+
+</html>
