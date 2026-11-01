@@ -12,7 +12,7 @@ To run this project locally on your computer, follow these simple steps:
 
 ### 1. Prerequisites
 Make sure you have the following installed on your system:
-* [Node.js](https://nodejs.org/) (v16 or higher recommended) — *(npm intall)*
+* [Node.js](https://nodejs.org/) (v16 or higher recommended) — *(npm install)*
 
 ### 2. Clone the Repository
 Open your terminal and clone the repository:
