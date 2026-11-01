@@ -19,4 +19,4 @@ Open your terminal and clone the repository:
 ```bash
 git clone [https://github.com/chwwnie/JournalApp.git](https://github.com/chwwnie/JournalApp.git)
 cd JournalApp
-npm start
+node app.js
