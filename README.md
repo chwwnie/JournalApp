@@ -1,6 +1,6 @@
 # 📖 Journal App
 
-A simple jounaling web app :)
+A simple journaling web app :)
 
 [View on Render](https://journalapp-ikwh.onrender.com)
 
